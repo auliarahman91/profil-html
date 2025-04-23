@@ -117,6 +117,42 @@
                 <p class="card-text">Hubungi saya melalui email: john.doe@example.com</p>
             </div>
         </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">
+            Hubungi Saya
+        </button>
     </section>
+
+    <!-- Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Hubungi Saya</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="name" placeholder="Nama Anda">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email Anda">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Pesan</label>
+                        <textarea class="form-control" id="message" rows="3" placeholder="Pesan Anda"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary">Kirim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
