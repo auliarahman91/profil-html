@@ -1,0 +1,2 @@
+INSERT INTO products (nama_produk, harga, deskripsi, stok)
+VALUES ('Sepatu Olahraga', 500000, 'Sepatu nyaman untuk olahraga', 20);

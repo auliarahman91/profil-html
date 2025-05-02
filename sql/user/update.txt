@@ -1,0 +1,3 @@
+UPDATE users
+SET nama = 'Budi S.', email = 'budi.s@example.com'
+WHERE id = 1;

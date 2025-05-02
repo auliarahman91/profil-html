@@ -1,0 +1,3 @@
+UPDATE products
+SET harga = 550000, stok = 15
+WHERE id = 1;
