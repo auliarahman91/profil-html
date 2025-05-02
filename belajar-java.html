@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daftar Produk E-Commerce</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px;
+      width: 250px;
+      box-sizing: border-box;
+      float: left;
+      text-align: center;
+    }
+    .product img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: contain;
+    }
+    .filter {
+      margin-bottom: 20px;
+    }
+    .clear {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Daftar Produk</h1>
+
+<div class="filter">
+  <label for="categoryFilter">Filter Kategori: </label>
+  <select id="categoryFilter">
+    <option value="all">Semua</option>
+  </select>
+</div>
+
+<div id="productList"></div>
+<div class="clear"></div>
+
+<script>
+  // Array data produk
+  const products = [
+    {
+      nama: "Sepatu Olahraga",
+      harga: 500000,
+      deskripsi: "Sepatu nyaman untuk olahraga.",
+      gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-MK7SFwlXq9oyScwSpbMuZCnM9aqEwYt9vw&s",
+      kategori: "Olahraga"
+    },
+    {
+      nama: "Tas Ransel",
+      harga: 300000,
+      deskripsi: "Tas ransel stylish dan kuat.",
+      gambar: "https://vernyx.com/cdn/shop/products/TSJ474-_21.jpg?v=1633493160",
+      kategori: "Aksesoris"
+    },
+    {
+      nama: "Jam Tangan",
+      harga: 750000,
+      deskripsi: "Jam tangan elegan dan tahan air.",
+      gambar: "https://statik.tempo.co/data/2018/11/29/id_800394/800394_720.jpg",
+      kategori: "Aksesoris"
+    },
+    {
+      nama: "Baju Casual",
+      harga: 200000,
+      deskripsi: "Baju casual nyaman dipakai sehari-hari.",
+      gambar: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/107/MTA-159528356/elra_sport_kaos_olahraga_elastis_kerah_kancing_running_badminton_golf_casual_-_kaos_olahraga_casual_1102_soot_gray_full03_mxag78xs.jpg",
+      kategori: "Pakaian"
+    }
+  ];
+
+  const productList = document.getElementById("productList");
+  const categoryFilter = document.getElementById("categoryFilter");
+
+  // Fungsi untuk menampilkan produk
+  function displayProducts(productsToDisplay) {
+    productList.innerHTML = "";
+    if (productsToDisplay.length === 0) {
+      productList.innerHTML = "<p>Tidak ada produk ditemukan.</p>";
+      return;
+    }
+    productsToDisplay.forEach(product => {
+      const productDiv = document.createElement("div");
+      productDiv.classList.add("product");
+      productDiv.innerHTML = `
+        <img src="${product.gambar}" alt="${product.nama}" />
+        <h3>${product.nama}</h3>
+        <p>${product.deskripsi}</p>
+        <p><strong>Rp ${product.harga.toLocaleString()}</strong></p>
+        <p><em>Kategori: ${product.kategori}</em></p>
+      `;
+      productList.appendChild(productDiv);
+    });
+  }
+
+  // Fungsi untuk mengisi opsi filter kategori
+  function populateCategoryFilter() {
+    const categories = [...new Set(products.map(p => p.kategori))];
+    categories.forEach(cat => {
+      const option = document.createElement("option");
+      option.value = cat;
+      option.textContent = cat;
+      categoryFilter.appendChild(option);
+    });
+  }
+
+  // Event listener filter
+  categoryFilter.addEventListener("change", () => {
+    const selectedCategory = categoryFilter.value;
+    if (selectedCategory === "all") {
+      displayProducts(products);
+    } else {
+      const filtered = products.filter(p => p.kategori === selectedCategory);
+      displayProducts(filtered);
+    }
+  });
+
+  // Inisialisasi halaman
+  populateCategoryFilter();
+  displayProducts(products);
+</script>
+
+</body>
+</html>
